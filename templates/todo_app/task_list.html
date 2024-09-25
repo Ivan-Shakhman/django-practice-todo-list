@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% include "base.html" %}
+{% block content %}
+  {% for task in task_list %}
+    {{ task.content }}
+    <br>
+  {% endfor %}
+{% endblock %}
