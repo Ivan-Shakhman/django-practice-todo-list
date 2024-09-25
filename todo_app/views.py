@@ -8,7 +8,6 @@ from todo_app.models import Task, Tag
 
 class HomePageTaskView(generic.ListView):
     model = Task
-    paginate_by = 6
     queryset = Task.objects.prefetch_related("tags").all().order_by("is_done", "-created_at")
 
 
@@ -48,7 +47,6 @@ class TaskDeleteView(generic.DeleteView):
 
 class TagListView(generic.ListView):
     model = Tag
-    paginate_by = 6
 
 
 def task_status(request, pk):
