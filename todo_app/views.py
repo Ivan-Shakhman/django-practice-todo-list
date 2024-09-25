@@ -1,5 +1,3 @@
-
-
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views import generic
@@ -11,8 +9,7 @@ from todo_app.models import Task, Tag
 class HomePageTaskView(generic.ListView):
     model = Task
     paginate_by = 6
-    queryset = Task.objects.all().order_by('-is_done', '-created_at')
-
+    queryset = Task.objects.all().order_by('is_done', '-created_at')
 
 
 class TaskCreateView(generic.CreateView):
@@ -37,6 +34,7 @@ class TagDeleteView(generic.DeleteView):
     model = Tag
     success_url = reverse_lazy("todo:tags")
 
+
 class TaskUpdateView(generic.UpdateView):
     model = Task
     form_class = TaskForm
@@ -58,5 +56,3 @@ def task_status(request, pk):
     task.is_done = not task.is_done
     task.save()
     return redirect(reverse("todo:homepage"))
-
-
