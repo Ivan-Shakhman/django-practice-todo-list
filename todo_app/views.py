@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views import generic
 
-from todo_app.forms import TaskForm
+from todo_app.forms import TaskForm, TagForm
 from todo_app.models import Task, Tag
 
 
@@ -20,6 +20,17 @@ class TaskCreateView(generic.CreateView):
     form_class = TaskForm
     success_url = reverse_lazy('todo:homepage')
 
+
+class TagCreateView(generic.CreateView):
+    model = Tag
+    form_class = TagForm
+    success_url = reverse_lazy("todo:tags")
+
+
+class TagUpdateView(generic.UpdateView):
+    model = Tag
+    form_class = TagForm
+    success_url = reverse_lazy("todo:tags")
 
 class TaskUpdateView(generic.UpdateView):
     model = Task

@@ -2,7 +2,7 @@ from symtable import Class
 
 from django import forms
 
-from todo_app.models import Task
+from todo_app.models import Task, Tag
 
 
 class TaskForm(forms.ModelForm):
@@ -12,3 +12,8 @@ class TaskForm(forms.ModelForm):
         widgets = {
             'deadline': forms.DateInput(attrs={'type': 'date'}),
         }
+
+class TagForm(forms.ModelForm):
+    class Meta:
+        model = Tag
+        fields = ('name',)
