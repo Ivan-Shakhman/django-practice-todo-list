@@ -1,5 +1,7 @@
-from django.shortcuts import render
-from django.urls import reverse_lazy
+
+
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy, reverse
 from django.views import generic
 
 from todo_app.forms import TaskForm
@@ -9,6 +11,7 @@ from todo_app.models import Task, Tag
 class HomePageTaskView(generic.ListView):
     model = Task
     paginate_by = 6
+    queryset = Task.objects.all().order_by('-is_done', '-created_at')
 
 
 
@@ -27,5 +30,12 @@ class TaskUpdateView(generic.UpdateView):
 class TagListView(generic.ListView):
     model = Tag
     paginate_by = 6
+
+
+def task_status(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    task.is_done = not task.is_done
+    task.save()
+    return redirect(reverse("todo:homepage"))
 
 

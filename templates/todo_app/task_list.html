@@ -7,15 +7,24 @@
     </a>
   </h1>
   {% for task in task_list %}
-    <h5>{{ task.content }} {{ task.is_done }}</h5>
+    <h5>{{ task.content }} {% if task.is_done %}<a style="color: green">Done</a> {% else %}<a style="color: red"> Not done</a>{% endif %}</h5>
     <br>
     {{ task.created_at }}
     <br>Tags:
     {% for tag in task.tags.all %}
       {{ tag.name }}
+
     {% endfor %}
 
       <a style="text-decoration: none;" href="{% url "todo:task_update" pk=task.id %}">update</a>
+    <a style="text-decoration: none;" href="">delete</a>
     <br><br>
+    <a href="{% url "todo:task_status" pk=task.id %}" class="btn btn-{% if task.is_done %}secondary{% else %}success{% endif %}">
+    {% if task.is_done %}
+     Undo
+    {% else %}
+      Complete
+    {% endif %}
+  </a>
   {% endfor %}
 {% endblock %}
