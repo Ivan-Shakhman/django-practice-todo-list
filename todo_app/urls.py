@@ -6,3 +6,5 @@ urlpatterns = [
     path('', HomePageTaskView.as_view(), name='homepage'),
 
 ]
+
+app_name = "todo"
