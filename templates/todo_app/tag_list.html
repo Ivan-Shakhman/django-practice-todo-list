@@ -1,8 +1,15 @@
 {% include "base.html" %}
 {% block content %}
+   <a href="{% url "todo:tag_create" %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
   <ul>
   {% for tag in tag_list %}
-    <li>{{ tag.name }}</li>
+    <li>{{ tag.name }}
+      <a class="btn btn-secondary" style="text-decoration: none;" href="{% url "todo:tag_update" pk=tag.id %}">update</a>
+      <a class="btn btn-secondary" style="text-decoration: none;" href="{% url "todo:tag_delete" pk=tag.id %}">delete</a></li>
+    <br>
+
   {% endfor %}
   </ul>
 {% endblock %}
