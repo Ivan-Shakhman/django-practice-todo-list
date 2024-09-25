@@ -1,7 +1,19 @@
 {% include "base.html" %}
 {% block content %}
+  <h1>
+    TODO list
+    <a href="" class="btn btn-primary link-to-page">
+      Create
+    </a>
+  </h1>
   {% for task in task_list %}
-    {{ task.content }}
+    <h5>{{ task.content }} {{ task.is_done }}</h5>
+    <br>
+    {{ task.created_at }}
+    <br>Tags: 
+    {% for tag in task.tags.all %}
+      {{ tag.name }}
+    {% endfor %}  
     <br>
   {% endfor %}
 {% endblock %}
