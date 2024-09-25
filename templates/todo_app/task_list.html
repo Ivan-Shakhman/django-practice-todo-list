@@ -8,6 +8,7 @@
   </h1>
   <br><br>
 
+  {% if task_list %}
   {% for task in task_list %}
 
     <h5>{{ task.content }} {% if task.is_done %}<a style="color: green">Done</a> {% else %}
@@ -37,4 +38,7 @@
 
     <hr>
   {% endfor %}
+  {% else %}
+  <h3 style="color: saddlebrown"> no tasks </h3>
+  {% endif %}
 {% endblock %}

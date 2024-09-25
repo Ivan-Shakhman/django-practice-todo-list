@@ -4,6 +4,7 @@
       Add
     </a>
   <br><br>
+  {% if tag_list %}
   <table class="table">
       <tr>
         <th>Name</th>
@@ -18,4 +19,7 @@
       </tr>
     {% endfor %}
     </table>
+  {% else %}
+  <h3 style="color: saddlebrown"> No tags</h3>
+  {% endif %}
 {% endblock %}

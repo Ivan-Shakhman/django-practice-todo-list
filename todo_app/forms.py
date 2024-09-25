@@ -8,7 +8,8 @@ class TaskForm(forms.ModelForm):
         model = Task
         fields = ('content', 'deadline', 'tags')
         widgets = {
-            'deadline': forms.DateInput(attrs={'type': 'date'}),
+            "deadline": forms.DateInput(attrs={'type': 'date'}),
+            "tags": forms.CheckboxSelectMultiple(),
         }
 
 class TagForm(forms.ModelForm):
