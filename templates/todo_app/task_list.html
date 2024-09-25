@@ -10,10 +10,12 @@
     <h5>{{ task.content }} {{ task.is_done }}</h5>
     <br>
     {{ task.created_at }}
-    <br>Tags: 
+    <br>Tags:
     {% for tag in task.tags.all %}
       {{ tag.name }}
-    {% endfor %}  
-    <br>
+    {% endfor %}
+
+      <a style="text-decoration: none;" href="{% url "todo:task_update" pk=task.id %}">update</a>
+    <br><br>
   {% endfor %}
 {% endblock %}
