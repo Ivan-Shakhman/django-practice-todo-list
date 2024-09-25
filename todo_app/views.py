@@ -9,7 +9,7 @@ from todo_app.models import Task, Tag
 class HomePageTaskView(generic.ListView):
     model = Task
     paginate_by = 6
-    queryset = Task.objects.all().order_by('is_done', '-created_at')
+    queryset = Task.objects.prefetch_related("tags").all().order_by("is_done", "-created_at")
 
 
 class TaskCreateView(generic.CreateView):
